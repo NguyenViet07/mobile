@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let Mobile = function (battery, sentMessage, inbox, draftMessage, status) {
+        this.battery = battery;
+        this.sentMessage = sentMessage;
+        this.inbox = inbox;
+        this.draftMessage = draftMessage;
+        this.status = status;
+
+        this.getStatus = function () {
+            return this.status;
+        };
+
+        this.changeBattery = function () {
+            this.battery = 100;
+        };
+        this.receiveMessage = function (message, mobile) {
+            if (this.status) {
+                this.inbox.push(message);
+                this.battery -= 1;
+            } else {
+                alert("Mobile is off");
+                return "";
+            }
+        };
+        this.sendMessage = function (message,mobile) {
+            if (this.status) {
+                this.battery -= 1;
+                this.sentMessage.push(message);
+
+            } else {
+                alert("Mobile is off");
+                return "";
+            }
+        };
+        this.getInbox = function () {
+            if (this.status) {
+                this.battery -= 1;
+                return this.inbox;
+            } else {
+                alert("Mobile is off");
+
+            }
+        };
+        this.getSentMessage = function () {
+            if (this.status){
+                this.battery -= 1;
+                return this.sentMessage;
+            }else {
+                alert("Mobile is off");
+                return "";
+            }
+        };
+
+    };
+    let samsungs9 = new Mobile(100, [], [], '', true);
+    let iphoneXs = new Mobile(100, [], [], '', true);
+    let m = "I'm coming";
+    samsungs9.sendMessage(m,iphoneXs);
+
+    document.write("Send message samsungs9: " + samsungs9.getSentMessage() + "<br>");
+    document.write("Inbox iphoneXs: " + iphoneXs.getInbox());
+</script>
+
+</body>
+</html>
